@@ -1,0 +1,72 @@
+1. create 1 main folder -> campus-lost-found
+2. created 2 sub-folder -> client and server
+
+3. first i am going to build backend then i am going to build frontend
+
+//backend
+4. change the directory to server (now thats our main directory)
+5. npm init -y
+6. npm install  express (api framwork) 
+                mongoose (for defining modal) 
+                cors (for connecting frontend and backend) 
+                dotenv (for keeping secure env variables) 
+                zod (for input validation)
+                
+7. npm  -D (development dependency not required in production) 
+        nodemon (for restart automatically the server)
+
+//now before writing any code , 
+1. i want to mention that i am going to use feature based architecture (rather then conventional architecture)
+2. update (add) scripts in package.json -> "dev" : "nodemon src/server.js"
+                                        -> "start": "node src/server.js"
+3. now create some folders or files in server
+
+so currently my directory tree is looks like that (using file-tree-generator VS CODE EXTENSION)                        
+
+server
+ ┣ node_modules
+ ┣ src
+ ┃ ┣ config
+ ┃ ┣ features
+ ┃ ┃ ┗ items
+ ┃ ┣ middleware
+ ┃ ┣ app.js
+ ┃ ┗ server.js
+ ┣ .env
+ ┣ .gitignore
+ ┣ howIDoIt.txt
+ ┣ package-lock.json
+ ┗ package.json
+
+before moving further our main content code (lost & found item) will lie in featurs/items/ folder (thats the beauty of feature based architecture)
+
+//MAIN CODE START NOW (SERVER SETUP)
+1. server/.env (setup our env variables)
+2. update package.json -> "type": "module"  (for using ES modules -> import/export) , i prefer this because its modern and similar to our frontend
+3. create app.js -> what actually our application is doing (root endpoints lies in it)
+4. create server.js -> how our application is starting
+5. create new clustor mongoDB Atlas (i have already my string so i just updated the string -> new database)
+
+till now my directory tree looks like that 
+src                   (showing src because that have main coded files)
+ ┣ config
+ ┃ ┗ database.js
+ ┣ features
+ ┃ ┗ items
+ ┣ middleware
+ ┣ app.js
+ ┗ server.js
+
+//MAIN ITEM CODING STARTS FROM THERE (MAIN FEATURE IMPLEMENTATION)
+1. create item.model.js (for define our schema)
+2. create item.validation.js (we are using Zod for API-level validation (incoming data is valid or not))
+3. create item.service.js (main business logic lies in that)
+4. create item.controller.js (handle the http request)
+5. create item.routes.js (which url should call what)
+6. after that now connect feature to express app (app.js)
+7. now we are able to test via postman (on 2 endpoints)
+   GET : http://localhost:5000/api/items
+   POST: http://localhost:5000/api/items
+8. check the mongodb we are having our stored lost and found items there and also in postman having valid responses
+
+//VALIDATION MIDDLEWARE + CENTRALIZED ERROR HANDLING
