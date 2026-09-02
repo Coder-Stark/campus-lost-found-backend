@@ -23,7 +23,7 @@ export const createItemSchema = z.object({
 
   date: z
     .iso
-    .datetime()
+    .datetime({offset: true})                  //for handling timezone offsets (+05:30)
     .optional(),
 
   description: z

@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import itemRoutes from "./features/items/item.routes.js";
+import errorHandler from "./middleware/errorHandler.js";
+import notFound from "./middleware/notFound.js";
 
 const app = express();
 
@@ -20,5 +22,9 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/items", itemRoutes);
+
+app.use(notFound);
+
+app.use(errorHandler);             //it always after the routes
 
 export default app;

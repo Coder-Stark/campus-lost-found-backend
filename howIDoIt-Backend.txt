@@ -69,4 +69,68 @@ src                   (showing src because that have main coded files)
    POST: http://localhost:5000/api/items
 8. check the mongodb we are having our stored lost and found items there and also in postman having valid responses
 
+till now our directory tree looks like that
+src
+ ┣ config
+ ┃ ┗ database.js
+ ┣ features
+ ┃ ┣ additionalFeatures
+ ┃ ┗ items
+ ┃ ┃ ┣ item.controller.js
+ ┃ ┃ ┣ item.model.js
+ ┃ ┃ ┣ item.routes.js
+ ┃ ┃ ┣ item.service.js
+ ┃ ┃ ┗ item.validation.js
+ ┣ middleware
+ ┣ app.js
+ ┗ server.js
+
 //VALIDATION MIDDLEWARE + CENTRALIZED ERROR HANDLING
+1. create middleware/validate.js
+2. now added middleware in item.routes of create -> validate(createItemSchema),
+3. now testcases are below
+        //getting 400 error with proper response (all different)
+        1. invalid input
+        2. invalid type
+        3. empty strings
+
+        //getting 201 created with proper response
+        4. valid data again 
+
+//now validation error handled, we have to handle centralized error (for unexpected errors)
+4. create middleware/errorHandler.js
+5. now added errorHandler-middleware in app.js
+6. create middleware/notFound.js    (for unknown routes -> valid response handle)
+7. now added notFound-middleware in app.js
+
+now our backend is ok and that is my directory tree final
+
+//directory tree
+
+node_modules
+src
+ ┣ config
+ ┃ ┗ database.js
+ ┣ features
+ ┃ ┣ additionalFeatures
+ ┃ ┗ items
+ ┃ ┃ ┣ item.controller.js
+ ┃ ┃ ┣ item.model.js
+ ┃ ┃ ┣ item.routes.js
+ ┃ ┃ ┣ item.service.js
+ ┃ ┃ ┗ item.validation.js
+ ┣ middleware
+ ┃ ┣ errorHandler.js
+ ┃ ┣ notFound.js
+ ┃ ┗ validate.js
+ ┣ app.js
+ ┗ server.js
+.env
+.env.sample
+.gitignore
+directoryTree.js
+howIDoIt-Backend.txt
+package-lock.json
+package.json
+
+//i have created campusLostFound_API.md (in which postman_collection data extracted which i used for testcases)
