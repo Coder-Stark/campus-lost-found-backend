@@ -6,9 +6,11 @@ import notFound from "./middleware/notFound.js";
 
 const app = express();
 
+const allowedOrigins = process.env.CLIENT_URLS.split(",");
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
   })
 );
 
